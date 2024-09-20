@@ -5,11 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import DAO.UserRepo;
+import model.User;
+import table.TableUser;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserFrame extends JFrame {
 
@@ -38,6 +51,29 @@ public class UserFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	UserRepo usr = new UserRepo();
+	List<User> ls;
+	public String id; 
+	
+	public void reset() {
+		txtName.setText("");
+		txtUsername.setText("");
+		txtPassword.setText("");
+	}
+	
+	public void loadTable() {
+		ls = usr.show();
+		TableUser tu = new TableUser(ls);
+		TableUsers.setModel(tu);
+		TableUsers.getTableHeader().setVisible(true);
+		
+	UserFrame frame = new UserFrame();
+	frame.setVisible(true);
+	frame.loadTable();
+	
+	}
+	
 	public UserFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 547, 563);
@@ -81,16 +117,48 @@ public class UserFrame extends JFrame {
 		contentPane.add(lblPassword);
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User user = new User();
+				user.setNama(txtName.getText());
+				user.setPassword(txtPassword.getText());
+				usr.save(user);
+				reset();
+			}
+		});
 		btnSave.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnSave.setBounds(124, 159, 74, 23);
 		contentPane.add(btnSave);
 		
 		JButton btnUpdate = new JButton("Update\r\n");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User user = new User();
+				user.setNama(txtName.getText());
+				user.setUsername(txtUsername.getText());
+				user.setPassword(txtPassword.getText());
+				user.setId(id);
+				usr.update(user);
+				reset();
+				loadTable();
+			}
+		});
 		btnUpdate.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnUpdate.setBounds(208, 159, 74, 23);
 		contentPane.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( id != null){
+					usr.delete(id);
+					reset();
+					loadTable();
+				} else {
+					JOptionPane.showMessageDialog(null, "Silakan pilih data yang ingin dihapus.");
+				}
+			}
+		});
 		btnDelete.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnDelete.setBounds(292, 159, 74, 23);
 		contentPane.add(btnDelete);
@@ -101,7 +169,19 @@ public class UserFrame extends JFrame {
 		contentPane.add(btnCancel);
 		
 		TableUsers = new JTable();
+		TableUsers.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				id = TableUsers.getValueAt(TableUsers.getSelectedRow(), 0).toString();
+				txtName.setText(TableUsers.getValueAt(TableUsers.getSelectedRow(), 1).toString());
+				txtUsername.setText(TableUsers.getValueAt(TableUsers.getSelectedRow(), 2).toString());
+;				txtPassword.setText(TableUsers.getValueAt(TableUsers.getSelectedRow(), 3).toString());
+			}
+		});
 		TableUsers.setBounds(40, 484, 432, -274);
 		contentPane.add(TableUsers);
+		
+		
+		
 	}
 }
