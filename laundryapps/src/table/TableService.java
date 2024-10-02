@@ -2,19 +2,19 @@ package table;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Customer;
+import model.Service;
 
-public class TableCustomer extends AbstractTableModel {
-    private List<Customer> cs;
-    private String[] columnNames = {"Id", "Nama", "Alamat", "NoHp"};
+public class TableService extends AbstractTableModel {
+    private List<Service> sv;
+    private String[] columnNames = {"Id", "Jenis", "Status", "Harga"};
 
-    public TableCustomer(List<Customer> cs) {
-        this.cs = cs;
+    public TableService(List<Service> sv) {
+        this.sv = sv;
     }
 
     @Override
     public int getRowCount() {
-        return cs.size();
+        return sv.size();
     }
 
     @Override
@@ -29,16 +29,16 @@ public class TableCustomer extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Customer customer = cs.get(rowIndex);
+    	Service service = sv.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return customer.getId();
+                return service.getId();
             case 1:
-                return customer.getNama();
+                return service.getJenis();
             case 2:
-                return customer.getAlamat();
+                return service.getStatus();
             case 3:
-                return customer.getNoHp(); // Consistent with noHp
+                return service.getHarga(); 
             default:
                 return null;
         }
