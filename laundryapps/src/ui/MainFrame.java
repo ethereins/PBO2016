@@ -55,6 +55,9 @@ public class MainFrame extends JFrame {
 		JButton btnPesanan = new JButton("Pesanan");
 		btnPesanan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OrderFrame order = new OrderFrame();
+				order.setVisible(true);
+				order.loadTable();
 			}
 		});
 		btnPesanan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
@@ -62,16 +65,37 @@ public class MainFrame extends JFrame {
 		contentPane.add(btnPesanan);
 		
 		JButton btnLayanan = new JButton("Layanan");
+		btnLayanan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ServiceFrame service = new ServiceFrame();
+				service.setVisible(true);
+				service.loadTable();
+			}
+		});
 		btnLayanan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
 		btnLayanan.setBounds(248, 100, 99, 46);
 		contentPane.add(btnLayanan);
 		
 		JButton btnPelanggan = new JButton("Pelanggan");
+		btnPelanggan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerFrame cst = new CustomerFrame();
+				cst.setVisible(true);
+				cst.loadTable();
+			}
+		});
 		btnPelanggan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
 		btnPelanggan.setBounds(370, 100, 99, 46);
 		contentPane.add(btnPelanggan);
 		
 		JButton btnPengguna = new JButton("Pengguna");
+		btnPengguna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserFrame user = new UserFrame();
+				user.setVisible(true);
+				user.loadTable();
+			}
+		});
 		btnPengguna.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
 		btnPengguna.setBounds(123, 168, 99, 46);
 		contentPane.add(btnPengguna);

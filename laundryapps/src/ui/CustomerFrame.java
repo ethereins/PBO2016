@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 public class CustomerFrame extends JFrame {
 
@@ -122,7 +123,7 @@ public class CustomerFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (id != null) {
                     Customer customer = new Customer();
-                    customer.setId(id); // Use the existing id
+                    customer.setId(id); // Use the existing id_order
                     customer.setNama(txtNama.getText());
                     customer.setAlamat(txtAlamat.getText());
                     customer.setNoHp(txtNoHp.getText());
@@ -159,10 +160,13 @@ public class CustomerFrame extends JFrame {
         btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 13));
         btnCancel.setBounds(413, 155, 79, 23);
         contentPane.add(btnCancel);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(34, 200, 458, 150);
+        contentPane.add(scrollPane);
 
         tableCustomer = new JTable();
-        tableCustomer.setBounds(34, 200, 458, 150);
-        contentPane.add(tableCustomer);
+        scrollPane.setViewportView(tableCustomer);
         tableCustomer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -184,10 +188,10 @@ public class CustomerFrame extends JFrame {
         txtNama.setText("");
         txtAlamat.setText("");
         txtNoHp.setText("");
-        id = null; // Reset the id when canceling
+        id = null; // Reset the id_order when canceling
     }
 
-    private void loadTable() {
+    public void loadTable() {
         cs = cst.show();
         TableCustomer tc = new TableCustomer(cs);
         tableCustomer.setModel(tc);

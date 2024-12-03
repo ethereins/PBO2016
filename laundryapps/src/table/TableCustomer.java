@@ -43,4 +43,9 @@ public class TableCustomer extends AbstractTableModel {
                 return null;
         }
     }
+    public Customer getCostumerAt(int rowIndex) {
+
+        return cs.get(rowIndex);
+
+    }
 }

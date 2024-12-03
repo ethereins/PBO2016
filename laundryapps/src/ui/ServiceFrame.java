@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import DAO.ServiceRepo;
 import model.Service;
 import table.TableService;
+import javax.swing.JScrollPane;
 
 public class ServiceFrame extends JFrame {
 
@@ -122,7 +123,7 @@ public class ServiceFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (id != null) {
                     Service service = new Service();
-                    service.setId(id); // Use the existing id
+                    service.setId(id); // Use the existing id_order
                     service.setJenis(txtJenis.getText());
                     service.setStatus(txtStatus.getText());
                     service.setHarga(Long.parseLong(txtHarga.getText()));
@@ -157,10 +158,13 @@ public class ServiceFrame extends JFrame {
         btnCancel.setBounds(390, 143, 80, 23);
         btnCancel.addActionListener(e -> reset());
         contentPane.add(btnCancel);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(25, 200, 440, 200);
+        contentPane.add(scrollPane);
 
         tableService = new JTable();
-        tableService.setBounds(25, 200, 440, 200);
-        contentPane.add(tableService);
+        scrollPane.setViewportView(tableService);
         tableService.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -182,10 +186,10 @@ public class ServiceFrame extends JFrame {
         txtJenis.setText("");
         txtStatus.setText("");
         txtHarga.setText("");
-        id = null; // Reset the id when canceling
+        id = null; // Reset the id_order when canceling
     }
 
-    private void loadTable() {
+    public void loadTable() {
         services = serviceRepo.show();
         TableService ts = new TableService(services);
         tableService.setModel(ts);
