@@ -52,31 +52,31 @@ public class CustomerFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 550, 420);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(64, 128, 128));
+        contentPane.setBackground(new Color(204, 204, 255));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lblId = new JLabel("ID");
-        lblId.setForeground(Color.WHITE);
+        lblId.setForeground(new Color(0, 0, 0));
         lblId.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblId.setBounds(34, 38, 79, 29);
         contentPane.add(lblId);
 
         JLabel lblNama = new JLabel("Nama");
-        lblNama.setForeground(Color.WHITE);
+        lblNama.setForeground(new Color(0, 0, 0));
         lblNama.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblNama.setBounds(34, 65, 79, 29);
         contentPane.add(lblNama);
 
         JLabel lblAlamat = new JLabel("Alamat");
-        lblAlamat.setForeground(Color.WHITE);
+        lblAlamat.setForeground(new Color(0, 0, 0));
         lblAlamat.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblAlamat.setBounds(34, 90, 79, 29);
         contentPane.add(lblAlamat);
 
         JLabel lblNomorTelepon = new JLabel("Nomor Telepon");
-        lblNomorTelepon.setForeground(Color.WHITE);
+        lblNomorTelepon.setForeground(new Color(0, 0, 0));
         lblNomorTelepon.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblNomorTelepon.setBounds(34, 119, 128, 29);
         contentPane.add(lblNomorTelepon);

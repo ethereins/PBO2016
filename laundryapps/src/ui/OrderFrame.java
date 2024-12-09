@@ -80,7 +80,7 @@ public class OrderFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(64, 128, 128));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -93,13 +93,13 @@ public class OrderFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(64, 128, 128));
+		panel.setBackground(new Color(204, 204, 255));
 		panel.setBounds(10, 10, 766, 94);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblDataOrderan = new JLabel("Data Orderan");
-		lblDataOrderan.setForeground(Color.WHITE);
+		lblDataOrderan.setForeground(new Color(0, 0, 0));
 		lblDataOrderan.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataOrderan.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		lblDataOrderan.setBounds(276, 10, 208, 25);

@@ -50,31 +50,31 @@ public class ServiceFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 550, 450);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(0, 128, 128));
+        contentPane.setBackground(new Color(204, 204, 255));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lblId = new JLabel("ID");
-        lblId.setForeground(Color.WHITE);
+        lblId.setForeground(new Color(0, 0, 0));
         lblId.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblId.setBounds(25, 37, 92, 22);
         contentPane.add(lblId);
 
         JLabel lblJenis = new JLabel("Jenis");
-        lblJenis.setForeground(Color.WHITE);
+        lblJenis.setForeground(new Color(0, 0, 0));
         lblJenis.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblJenis.setBounds(25, 61, 92, 22);
         contentPane.add(lblJenis);
 
         JLabel lblStatus = new JLabel("Status");
-        lblStatus.setForeground(Color.WHITE);
+        lblStatus.setForeground(new Color(0, 0, 0));
         lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblStatus.setBounds(25, 86, 92, 22);
         contentPane.add(lblStatus);
 
         JLabel lblHarga = new JLabel("Harga");
-        lblHarga.setForeground(Color.WHITE);
+        lblHarga.setForeground(new Color(0, 0, 0));
         lblHarga.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblHarga.setBounds(25, 110, 92, 22);
         contentPane.add(lblHarga);

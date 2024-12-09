@@ -185,14 +185,14 @@ public class OrderDetailFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(64, 128, 128));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblOrderId = new JLabel("Order ID");
-		lblOrderId.setForeground(Color.WHITE);
+		lblOrderId.setForeground(new Color(0, 0, 0));
 		lblOrderId.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblOrderId.setBounds(20, 22, 92, 25);
 		contentPane.add(lblOrderId);
@@ -210,25 +210,25 @@ public class OrderDetailFrame extends JFrame {
 		txtOrderID.setEnabled(false);
 		
 		JLabel lblPelanggan = new JLabel("Pelanggan");
-		lblPelanggan.setForeground(Color.WHITE);
+		lblPelanggan.setForeground(new Color(0, 0, 0));
 		lblPelanggan.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblPelanggan.setBounds(20, 75, 92, 25);
 		contentPane.add(lblPelanggan);
 		
 		JLabel lblTanggal = new JLabel("Tanggal");
-		lblTanggal.setForeground(Color.WHITE);
+		lblTanggal.setForeground(new Color(0, 0, 0));
 		lblTanggal.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTanggal.setBounds(20, 124, 81, 25);
 		contentPane.add(lblTanggal);
 		
 		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setForeground(Color.WHITE);
+		lblStatus.setForeground(new Color(0, 0, 0));
 		lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblStatus.setBounds(20, 223, 81, 25);
 		contentPane.add(lblStatus);
 		
 		JLabel lblTanggalPengambilan = new JLabel("Tanggal Pengambilan");
-		lblTanggalPengambilan.setForeground(Color.WHITE);
+		lblTanggalPengambilan.setForeground(new Color(0, 0, 0));
 		lblTanggalPengambilan.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTanggalPengambilan.setBounds(20, 176, 170, 25);
 		contentPane.add(lblTanggalPengambilan);
@@ -240,19 +240,19 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(boxStatusCucian);
 		
 		JLabel lblTotal = new JLabel("Total");
-		lblTotal.setForeground(Color.WHITE);
+		lblTotal.setForeground(new Color(0, 0, 0));
 		lblTotal.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTotal.setBounds(20, 280, 53, 25);
 		contentPane.add(lblTotal);
 		
 		JLabel lblStatusPembayaran = new JLabel("Status Pembayaran");
-		lblStatusPembayaran.setForeground(Color.WHITE);
+		lblStatusPembayaran.setForeground(new Color(0, 0, 0));
 		lblStatusPembayaran.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblStatusPembayaran.setBounds(20, 378, 148, 25);
 		contentPane.add(lblStatusPembayaran);
 		
 		JLabel lblPembayaran = new JLabel("Pembayaran");
-		lblPembayaran.setForeground(Color.WHITE);
+		lblPembayaran.setForeground(new Color(0, 0, 0));
 		lblPembayaran.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblPembayaran.setBounds(20, 324, 103, 25);
 		contentPane.add(lblPembayaran);
@@ -268,13 +268,13 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(boxStatusBayar);
 		
 		JLabel lblLayanan = new JLabel("Layanan");
-		lblLayanan.setForeground(Color.WHITE);
+		lblLayanan.setForeground(new Color(0, 0, 0));
 		lblLayanan.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblLayanan.setBounds(220, 22, 103, 25);
 		contentPane.add(lblLayanan);
 		
 		JLabel lblHargakg = new JLabel("Harga/Kg");
-		lblHargakg.setForeground(Color.WHITE);
+		lblHargakg.setForeground(new Color(0, 0, 0));
 		lblHargakg.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblHargakg.setBounds(220, 223, 103, 25);
 		contentPane.add(lblHargakg);
@@ -292,7 +292,7 @@ public class OrderDetailFrame extends JFrame {
 		txtHargaPerKg.setEnabled(false);
 		
 		JLabel lblJumlah = new JLabel("Jumlah");
-		lblJumlah.setForeground(Color.WHITE);
+		lblJumlah.setForeground(new Color(0, 0, 0));
 		lblJumlah.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblJumlah.setBounds(220, 279, 103, 25);
 		contentPane.add(lblJumlah);
@@ -322,7 +322,7 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(txtJumlahKg);
 		
 		JLabel lblTotal_1 = new JLabel("Total");
-		lblTotal_1.setForeground(Color.WHITE);
+		lblTotal_1.setForeground(new Color(0, 0, 0));
 		lblTotal_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTotal_1.setBounds(400, 279, 103, 25);
 		contentPane.add(lblTotal_1);
@@ -334,7 +334,7 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(lblId_order);
 		
 		lblTampilHarga = new JLabel("Rp. " + ord_detail.total(txtOrderID.getText()));
-		lblTampilHarga.setForeground(Color.WHITE);
+		lblTampilHarga.setForeground(new Color(0, 0, 0));
 		lblTampilHarga.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTampilHarga.setBounds(20, 299, 170, 25);
 		contentPane.add(lblTampilHarga);
