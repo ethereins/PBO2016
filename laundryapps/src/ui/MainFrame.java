@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
 				order.loadTable();
 			}
 		});
-		btnPesanan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnPesanan.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPesanan.setBounds(123, 100, 99, 46);
 		contentPane.add(btnPesanan);
 		
@@ -72,7 +72,7 @@ public class MainFrame extends JFrame {
 				service.loadTable();
 			}
 		});
-		btnLayanan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnLayanan.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnLayanan.setBounds(248, 100, 99, 46);
 		contentPane.add(btnLayanan);
 		
@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
 				cst.loadTable();
 			}
 		});
-		btnPelanggan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnPelanggan.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPelanggan.setBounds(370, 100, 99, 46);
 		contentPane.add(btnPelanggan);
 		
@@ -96,22 +96,22 @@ public class MainFrame extends JFrame {
 				user.loadTable();
 			}
 		});
-		btnPengguna.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnPengguna.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnPengguna.setBounds(123, 168, 99, 46);
 		contentPane.add(btnPengguna);
 		
 		JButton btnLaporan = new JButton("Laporan");
-		btnLaporan.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnLaporan.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnLaporan.setBounds(248, 168, 99, 46);
 		contentPane.add(btnLaporan);
 		
 		JButton btnProfil = new JButton("Profil");
-		btnProfil.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnProfil.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnProfil.setBounds(370, 168, 99, 46);
 		contentPane.add(btnProfil);
 		
 		JButton btnKeluar = new JButton("Keluar");
-		btnKeluar.setFont(new Font("Tempus Sans ITC", Font.BOLD, 13));
+		btnKeluar.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		btnKeluar.setBounds(248, 270, 99, 27);
 		contentPane.add(btnKeluar);
 	}

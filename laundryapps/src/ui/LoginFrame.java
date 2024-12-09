@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import error.ValidationException;
 import model.User;
+import service.LoginService;
+import util.ValidationUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -49,7 +52,7 @@ public class LoginFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 452);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(184, 184, 220));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setForeground(new Color(128, 128, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -93,12 +96,30 @@ public class LoginFrame extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(User.login(txtUsername.getText(), txtPassword.getText())) {
-					new MainFrame().setVisible(true);
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Login Gagal.");
+				String userValue = txtUsername.getText();
+				String passValue = txtPassword.getText();
+				
+				User user = new User(userValue, passValue);
+				
+				try {
+					ValidationUtil.validate(user);
+					LoginService loginService = new LoginService();
+					if(loginService.authenticate(user)) {
+						System.out.println("Login sukses!");
+						new MainFrame().setVisible(true);
+						dispose();
+					}
+					else {
+						System.out.println("Username atau password tidak valid.");
+						JOptionPane.showMessageDialog(null, "Login gagal, Username atau password tidak valid.");
+					}
+				} catch (ValidationException | NullPointerException exception) {
+					System.out.println("Data tidak valid: " + exception.getMessage());
+					JOptionPane.showMessageDialog(null, "Login gagal: " + exception.getMessage());
+				} finally {
+					System.out.println("Selalu dieksekusi.");
 				}
+				
 			}});
 		btnLogin.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
 		btnLogin.setBounds(262, 232, 89, 23);

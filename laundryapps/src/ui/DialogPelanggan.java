@@ -57,11 +57,11 @@ public class DialogPelanggan extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogPelanggan(OrderDetailFrame orderDetailFrame) {
-		getContentPane().setBackground(new Color(64, 128, 128));
+		getContentPane().setBackground(new Color(204, 204, 255));
 		this.orderDetailFrame = orderDetailFrame;
 		setBounds(100, 100, 600, 420);
 		getContentPane().setLayout(null);
-		contentPanel.setBackground(new Color(64, 128, 128));
+		contentPanel.setBackground(new Color(204, 204, 255));
 		contentPanel.setBounds(0, 0, 586, 352);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
