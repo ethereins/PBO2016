@@ -88,11 +88,11 @@ public class OrderRepo implements OrderDAO{
 		try {
 			st = connection.prepareStatement(save);
 			st.setString(1, order.getId_order());
-	        st.setString(2, order.getNama()); // Assuming you have a method to get the customer's name
+	        st.setString(2, order.getNama()); 
 	        st.setString(3, order.getTanggal());
 	        st.setString(4, order.getTanggal_kembali());
 	        st.setString(5, order.getStatus());
-	        st.setInt(6, order.getTotal_harga()); // Assuming total_harga is an int
+	        st.setInt(6, order.getTotal_harga()); 
 	        st.setString(7, order.getPembayaran());
 	        st.setString(8, order.getStatus_bayar());
 			st.executeUpdate();

@@ -64,7 +64,6 @@ public class OrderDetailFrame extends JFrame {
 	ServiceRepo service_repo = new ServiceRepo();
 	List<Service> ls_srv;
 
-	//Deklarasi Variabel
 	public String id;
 	public String id_ord;
 	public static String id_order;
@@ -72,9 +71,6 @@ public class OrderDetailFrame extends JFrame {
 	public String tgl;
 	public String tgl_kbl;
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,17 +87,14 @@ public class OrderDetailFrame extends JFrame {
 		});
 	}
 	
-	//method-method yang digunakan
 	public void reset() {
 		txtHargaPerKg.setText("");
 		txtJumlahKg.setText("");
 		txtTotalHarga.setText("");
 	}
 	
-	
 	public void resetOrder() {
-		txtOrderID.setText("");
-		
+		txtOrderID.setText("");	
 	}
 	
 	public void resetAll() {
@@ -157,7 +150,6 @@ public class OrderDetailFrame extends JFrame {
 		txtCustomer.setText(cust);
 	}
 	
-	
 	public void setTanggal(Date date) {
         tanggal_masuk.setDate(date); 
     }
@@ -177,9 +169,7 @@ public class OrderDetailFrame extends JFrame {
 	public void setBoxPembayaran_1(String pembayaran) {
 		boxStatusBayar.setSelectedItem(pembayaran);
 	}
-	/**
-	 * Create the frame.
-	 */
+	
 	public OrderDetailFrame() {
 		setBackground(new Color(246, 246, 246));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -198,6 +188,7 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(lblOrderId);
 		
 		txtOrderID = new JTextField();
+		txtOrderID.setForeground(new Color(0, 0, 0));
 		txtOrderID.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -233,8 +224,8 @@ public class OrderDetailFrame extends JFrame {
 		lblTanggalPengambilan.setBounds(20, 176, 170, 25);
 		contentPane.add(lblTanggalPengambilan);
 		
-		
 		boxStatusCucian = new JComboBox();
+		boxStatusCucian.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		boxStatusCucian.setModel(new DefaultComboBoxModel(new String[] {"Progress", "Selesai", "Diambil"}));
 		boxStatusCucian.setBounds(20, 249, 170, 21);
 		contentPane.add(boxStatusCucian);
@@ -258,11 +249,13 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(lblPembayaran);
 		
 		boxPembayaran = new JComboBox();
+		boxPembayaran.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		boxPembayaran.setModel(new DefaultComboBoxModel(new String[] {"Tunai", "Non-Tunai"}));
 		boxPembayaran.setBounds(20, 349, 170, 21);
 		contentPane.add(boxPembayaran);
 		
 		boxStatusBayar = new JComboBox();
+		boxStatusBayar.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		boxStatusBayar.setModel(new DefaultComboBoxModel(new String[] {"Lunas", "Belum Lunas"}));
 		boxStatusBayar.setBounds(20, 405, 170, 21);
 		contentPane.add(boxStatusBayar);
@@ -286,6 +279,8 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(lblId_layanan);
 		
 		txtHargaPerKg = new JTextField();
+		txtHargaPerKg.setForeground(new Color(0, 0, 0));
+		txtHargaPerKg.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		txtHargaPerKg.setColumns(10);
 		txtHargaPerKg.setBounds(220, 250, 170, 19);
 		contentPane.add(txtHargaPerKg);
@@ -363,6 +358,7 @@ public class OrderDetailFrame extends JFrame {
 		});
 		
 		txtTotalHarga = new JTextField();
+		txtTotalHarga.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		txtTotalHarga.setColumns(10);
 		txtTotalHarga.setBounds(400, 303, 170, 19);
 		contentPane.add(txtTotalHarga);
@@ -498,6 +494,11 @@ public class OrderDetailFrame extends JFrame {
 		contentPane.add(btnBatal);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		scrollPane_1.setBounds(222, 383, 554, 170);
 		contentPane.add(scrollPane_1);
 		
@@ -577,7 +578,5 @@ public class OrderDetailFrame extends JFrame {
 		btnBatalOrder.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnBatalOrder.setBounds(105, 436, 85, 34);
 		contentPane.add(btnBatalOrder);
-		
-		
 	}
 }

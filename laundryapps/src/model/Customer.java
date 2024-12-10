@@ -33,5 +33,5 @@ public class Customer {
     
     public void setNoHp(String noHp) { 
         this.noHp = noHp; 
-}
+    }
 }

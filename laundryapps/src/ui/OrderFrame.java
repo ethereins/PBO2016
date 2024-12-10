@@ -53,9 +53,7 @@ public class OrderFrame extends JFrame {
 	public String total_harga;
 	public String pembayaran;
 	public String status_bayar;
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -27,9 +27,6 @@ public class DialogPelanggan extends JDialog {
 	private JTable tableCostumer;
 	private static OrderDetailFrame orderDetailFrame;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		try {
 			DialogPelanggan dialog = new DialogPelanggan(orderDetailFrame);
@@ -53,9 +50,6 @@ public class DialogPelanggan extends JDialog {
 		tableCostumer.getTableHeader().setVisible(true);
 	}
 
-	/**
-	 * Create the dialog.
-	 */
 	public DialogPelanggan(OrderDetailFrame orderDetailFrame) {
 		getContentPane().setBackground(new Color(204, 204, 255));
 		this.orderDetailFrame = orderDetailFrame;
