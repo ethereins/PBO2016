@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import DAO.CustomerRepo;
 import model.Customer;
+import model.CustomerBuilder;
 import table.TableCustomer;
 
 import java.awt.Color;
@@ -26,26 +27,45 @@ import javax.swing.JScrollPane;
 
 public class CustomerFrame extends JFrame {
 
+    private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextField txtId;
     private JTextField txtNama;
     private JTextField txtAlamat;
-    private JTextField txtNoHp;
-
-    private CustomerRepo cst = new CustomerRepo();
-    private List<Customer> cs;
-    private String id; 
+    private JTextField txtnoHp;
     private JTable tableCustomer;
-
+    
+    public String id;
+    List<Customer> ls; 
+    CustomerRepo cst = new CustomerRepo();
+    
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                CustomerFrame frame = new CustomerFrame();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        EventQueue.invokeLater(new Runnable() {
+        	public void run() {
+	            try {
+	                CustomerFrame frame = new CustomerFrame();
+	                frame.setVisible(true);
+	                frame.loadTable();
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+        	}
         });
+    }
+    
+    public void loadTable() {
+        ls = cst.show();
+        TableCustomer tc = new TableCustomer(ls);
+        tableCustomer.setModel(tc);
+        tableCustomer.getTableHeader().setVisible(true);
+    }
+    
+    public void reset() {
+        txtId.setText("");
+        txtNama.setText("");
+        txtAlamat.setText("");
+        txtnoHp.setText("");
+        id = null; 
     }
 
     public CustomerFrame() {
@@ -75,7 +95,7 @@ public class CustomerFrame extends JFrame {
         lblAlamat.setBounds(34, 90, 79, 29);
         contentPane.add(lblAlamat);
 
-        JLabel lblNomorTelepon = new JLabel("Nomor Telepon");
+        JLabel lblNomorTelepon = new JLabel("No. HP");
         lblNomorTelepon.setForeground(new Color(0, 0, 0));
         lblNomorTelepon.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         lblNomorTelepon.setBounds(34, 119, 128, 29);
@@ -96,24 +116,25 @@ public class CustomerFrame extends JFrame {
         txtAlamat.setBounds(138, 95, 354, 20);
         contentPane.add(txtAlamat);
 
-        txtNoHp = new JTextField();
-        txtNoHp.setColumns(10);
-        txtNoHp.setBounds(138, 124, 354, 20);
-        contentPane.add(txtNoHp);
+        txtnoHp = new JTextField();
+        txtnoHp.setColumns(10);
+        txtnoHp.setBounds(138, 124, 354, 20);
+        contentPane.add(txtnoHp);
 
         JButton btnSave = new JButton("Save");
         btnSave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Customer customer = new Customer();
-                customer.setId(txtId.getText());
-                customer.setNama(txtNama.getText());
-                customer.setAlamat(txtAlamat.getText());
-                customer.setNoHp(txtNoHp.getText());
-                cst.save(customer);
-                reset();
-                loadTable();
-            }
-        });
+        	public void actionPerformed(ActionEvent e) {
+				Customer customer = new CustomerBuilder()
+						.setId(txtId.getText())
+						.setNama(txtNama.getText())
+						.setAlamat(txtAlamat.getText())
+						.setnoHp(txtnoHp.getText())
+						.build();
+				cst.save(customer);
+				reset();
+				loadTable();
+			}
+		});
         btnSave.setFont(new Font("Times New Roman", Font.BOLD, 13));
         btnSave.setBounds(138, 155, 79, 23);
         contentPane.add(btnSave);
@@ -121,20 +142,22 @@ public class CustomerFrame extends JFrame {
         JButton btnUpdate = new JButton("Update");
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (id != null) {
-                    Customer customer = new Customer();
-                    customer.setId(id); // Use the existing id_order
-                    customer.setNama(txtNama.getText());
-                    customer.setAlamat(txtAlamat.getText());
-                    customer.setNoHp(txtNoHp.getText());
-                    cst.update(customer);
-                    reset();
-                    loadTable();
-                } else {
+                if (id == null || id.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Silakan pilih data yang ingin diupdate.");
+                    return;
                 }
+                Customer customer = new CustomerBuilder()
+                        .setId(id)
+                        .setNama(txtNama.getText())
+                        .setAlamat(txtAlamat.getText())
+                        .setnoHp(txtnoHp.getText())
+                        .build();
+                cst.update(customer); 
+                reset(); 
+                loadTable(); 
             }
         });
+
         btnUpdate.setFont(new Font("Times New Roman", Font.BOLD, 13));
         btnUpdate.setBounds(235, 155, 79, 23);
         contentPane.add(btnUpdate);
@@ -172,29 +195,15 @@ public class CustomerFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 int selectedRow = tableCustomer.getSelectedRow();
                 if (selectedRow != -1) {
-                    id = tableCustomer.getValueAt(selectedRow, 0).toString();
+                    id = tableCustomer.getValueAt(selectedRow, 0).toString(); 
+                    txtId.setText(id); 
                     txtNama.setText(tableCustomer.getValueAt(selectedRow, 1).toString());
                     txtAlamat.setText(tableCustomer.getValueAt(selectedRow, 2).toString());
-                    txtNoHp.setText(tableCustomer.getValueAt(selectedRow, 3).toString());
+                    txtnoHp.setText(tableCustomer.getValueAt(selectedRow, 3).toString());
                 }
             }
         });
 
-        loadTable(); // Load the customer data into the table when the frame is created
-    }
-
-    private void reset() {
-        txtId.setText("");
-        txtNama.setText("");
-        txtAlamat.setText("");
-        txtNoHp.setText("");
-        id = null; // Reset the id_order when canceling
-    }
-
-    public void loadTable() {
-        cs = cst.show();
-        TableCustomer tc = new TableCustomer(cs);
-        tableCustomer.setModel(tc);
-        tableCustomer.getTableHeader().setVisible(true);
+        loadTable(); 
     }
 }

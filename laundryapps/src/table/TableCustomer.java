@@ -5,21 +5,21 @@ import javax.swing.table.AbstractTableModel;
 import model.Customer;
 
 public class TableCustomer extends AbstractTableModel {
-    private List<Customer> cs;
+    private List<Customer> ls;
     private String[] columnNames = {"Id", "Nama", "Alamat", "NoHp"};
 
-    public TableCustomer(List<Customer> cs) {
-        this.cs = cs;
+    public TableCustomer(List<Customer> ls) {
+        this.ls = ls;
     }
 
     @Override
     public int getRowCount() {
-        return cs.size();
+        return ls.size();
     }
 
     @Override
     public int getColumnCount() {
-        return columnNames.length; 
+        return 4; 
     }
 
     @Override
@@ -29,23 +29,22 @@ public class TableCustomer extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Customer customer = cs.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return customer.getId();
+                return ls.get(rowIndex).getId();
             case 1:
-                return customer.getNama();
+                return ls.get(rowIndex).getNama();
             case 2:
-                return customer.getAlamat();
+                return ls.get(rowIndex).getAlamat();
             case 3:
-                return customer.getNoHp(); // Consistent with noHp
+                return ls.get(rowIndex).getnoHp(); 
             default:
                 return null;
         }
     }
     public Customer getCostumerAt(int rowIndex) {
 
-        return cs.get(rowIndex);
+        return ls.get(rowIndex);
 
     }
 }

@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,70 +13,100 @@ import java.util.logging.Logger;
 
 import confg.Database;
 import model.Customer;
+import model.CustomerBuilder;
 
 public class CustomerRepo implements CustomerDAO {
     private Connection connection;
-    final String insert = "INSERT INTO customer (id, nama, alamat, noHp) VALUES (?, ?, ?, ?);"; 
-    final String select = "SELECT * FROM customer;";
-    final String delete = "DELETE FROM customer WHERE id = ?;";
-    final String update = "UPDATE customer SET nama = ?, alamat = ?, noHp = ? WHERE id = ?;"; 
-
+    final String insert = "INSERT INTO Customer (id, nama, alamat, noHp) VALUES (?,?,?,?);";
+	final String select = "SELECT * FROM Customer;";
+	final String delete = "DELETE FROM Customer WHERE id=?;";
+	final String update = "UPDATE Customer SET nama=?, alamat=?, noHp=? WHERE id=?;";
+	
     public CustomerRepo() {
         connection = Database.getConnection();
     }
     
-    @Override
-    public void save(Customer customer) {
-        try (PreparedStatement ps = connection.prepareStatement(insert)) {
-            ps.setString(1, customer.getId());
-            ps.setString(2, customer.getNama());
-            ps.setString(3, customer.getAlamat());
-            ps.setString(4, customer.getNoHp());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(CustomerRepo.class.getName()).log(Level.SEVERE, "Error saving customer: ", e);
-        }
-    }
 
     @Override
     public List<Customer> show() {
-        List<Customer> customers = new ArrayList<>(); 
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(select)) { 
-            while (rs.next()) {
-                Customer customer = new Customer();
-                customer.setId(rs.getString("id"));
-                customer.setNama(rs.getString("nama"));
-                customer.setAlamat(rs.getString("alamat"));
-                customer.setNoHp(rs.getString("noHp")); 
-                customers.add(customer);
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(CustomerRepo.class.getName()).log(Level.SEVERE, "Error retrieving customers: ", e);
-        }
-        return customers;
-    }
+	    List<Customer> ls = null;
+	    try {
+	        ls = new ArrayList<Customer>();
+	        Statement st = connection.createStatement();
+	        ResultSet rs = st.executeQuery(select);
+	        while (rs.next()) {
+	            Customer cs = new CustomerBuilder()
+	                    .setId(rs.getString("id"))
+	                    .setNama(rs.getString("nama"))
+	                    .setAlamat(rs.getString("alamat"))
+	                    .setnoHp(rs.getString("noHp"))
+	                    .build();
+	            		ls.add(cs);
+	        }
+	    } catch (SQLException e) {
+	        Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, e);
+	    }
+	    return ls;
+	}
+
+    @Override
+    public void save(Customer cs) {
+		PreparedStatement st = null;
+		try {
+			st = connection.prepareStatement(insert);
+			st.setString(1, cs.getId());
+			st.setString(2, cs.getNama());
+			st.setString(3, cs.getAlamat());
+			st.setString(4, cs.getnoHp());
+			st.executeUpdate();	
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				st.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
     @Override
     public void delete(String id) {
-        try (PreparedStatement ps = connection.prepareStatement(delete)) {
-            ps.setString(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(CustomerRepo.class.getName()).log(Level.SEVERE, "Error deleting customer: ", e);
-        }
-    }
+		PreparedStatement st = null;
+		try {
+			st = connection.prepareStatement(delete);
+					st.setString(1,id);
+			st.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			try {
+				st.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
     @Override
-    public void update(Customer customer) {
-        try (PreparedStatement ps = connection.prepareStatement(update)) {
-            ps.setString(1, customer.getNama());
-            ps.setString(2, customer.getAlamat());
-            ps.setString(3, customer.getNoHp()); 
-            ps.setString(4, customer.getId()); 
-            ps.executeUpdate(); 
-        } catch (SQLException e) {
-            Logger.getLogger(CustomerRepo.class.getName()).log(Level.SEVERE, "Error updating customer: ", e);
-        }
-    }
+    public void update (Customer cs) {
+		PreparedStatement st = null;
+		try {
+			st = connection.prepareStatement(update);
+			st.setString(1, cs.getNama());  
+			st.setString(2, cs.getAlamat()); 
+			st.setString(3, cs.getnoHp()); 
+			st.setString(4, cs.getId());     
+			st.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				st.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

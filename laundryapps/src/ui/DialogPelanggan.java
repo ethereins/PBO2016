@@ -74,7 +74,7 @@ public class DialogPelanggan extends JDialog {
 
                 if (selectedRow != -1) {
                     Customer selectedCostumer = ((TableCustomer) tableCostumer.getModel()).getCostumerAt(selectedRow);
-                    orderDetailFrame.setCostumer(selectedCostumer); // Update OrderDetailFrame
+                    orderDetailFrame.setCostumer(selectedCostumer); 
                     DialogPelanggan.this.dispose();
                 }
                 

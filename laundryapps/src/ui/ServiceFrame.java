@@ -123,7 +123,7 @@ public class ServiceFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (id != null) {
                     Service service = new Service();
-                    service.setId(id); // Use the existing id_order
+                    service.setId(id); 
                     service.setJenis(txtJenis.getText());
                     service.setStatus(txtStatus.getText());
                     service.setHarga(Long.parseLong(txtHarga.getText()));
